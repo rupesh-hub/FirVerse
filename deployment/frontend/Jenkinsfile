@@ -1,10 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            image 'docker:24-dind'  // DinD with Docker CLI
-            args '--privileged -v /var/lib/docker:/var/lib/docker'
-        }
-    }
+    agent any
 
     environment {
         DOCKER_HUB_CREDENTIALS_ID = 'docker-hub-credentials'
@@ -67,12 +62,12 @@ pipeline {
             }
         }
 
-        stage("Trivy Scan") {
-            steps {
-                sh '''
-                    curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh
-                    trivy image --exit-code 0 --severity HIGH,CRITICAL ${DOCKER_REPO}/${PROJECT_NAME}:${PROJECT_VERSION}
-                '''
+        stage("Trivy File System Scan") {
+           steps {
+              sh '''
+                 cd frontend
+                 trivy fs --format table -o trivy-fs-report.html .
+              '''
             }
         }
 
@@ -89,6 +84,18 @@ pipeline {
                         docker push ${DOCKER_REPO}/${PROJECT_NAME}:latest
                     '''
                 }
+            }
+        }
+
+        stage("Deployment") {
+              steps {
+                 echo "⚡ Deploying backend application..."
+                      sh """
+                      docker-compose -f docker/docker-compose/production/docker-compose.yaml pull
+                      docker-compose -f docker/docker-compose/production/docker-compose.yaml down --remove-orphans
+                      docker-compose -f docker/docker-compose/production/docker-compose.yaml up -d
+                      docker container prune -f
+                      """
             }
         }
     }
