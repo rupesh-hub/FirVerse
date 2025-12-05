@@ -1,0 +1,37 @@
+<div class="bg-gray-50 flex justify-center items-center min-h-screen p-4">
+
+  <div class="w-full max-w-md bg-white rounded-xl shadow-md p-8 space-y-6 border border-gray-100">
+    <div class="text-center">
+      <!-- Icon -->
+      <i class="fa-solid fa-shield-halved fa-3x text-cyan-600 mb-3"></i>
+
+      <h1 class="text-xl font-extrabold text-gray-800 tracking-tight">Enter Security Code</h1>
+      <p class="text-gray-500 mt-1 text-sm font-serif">A 6-digit code was sent to your email.</p>
+    </div>
+
+    <form action="#" method="POST" class="space-y-6">
+
+      <!-- OTP Input Container -->
+      <div id="otp-container" class="flex justify-between space-x-2 p-2">
+        <!-- 6 individual inputs for better UX -->
+        <input type="text" maxlength="1" id="otp-1" class="otp-input" inputmode="numeric">
+        <input type="text" maxlength="1" id="otp-2" class="otp-input" inputmode="numeric">
+        <input type="text" maxlength="1" id="otp-3" class="otp-input" inputmode="numeric">
+        <input type="text" maxlength="1" id="otp-4" class="otp-input" inputmode="numeric">
+        <input type="text" maxlength="1" id="otp-5" class="otp-input" inputmode="numeric">
+        <input type="text" maxlength="1" id="otp-6" class="otp-input" inputmode="numeric">
+      </div>
+
+      <button type="submit" id="verify-button"
+              class="w-full bg-cyan-600 text-white py-2.5 rounded-lg text-md font-bold shadow-md hover:bg-cyan-700 focus:outline-none focus:ring-4 focus:ring-cyan-500 focus:ring-opacity-50 transition duration-150 ease-in-out uppercase tracking-wider"
+              disabled>
+        Verify Code
+      </button>
+    </form>
+
+    <div class="text-center text-sm text-gray-600">
+      <p>Didn't receive a code? <a href="#" class="font-bold text-cyan-600 hover:text-cyan-500">Resend Code</a></p>
+    </div>
+  </div>
+
+</div>

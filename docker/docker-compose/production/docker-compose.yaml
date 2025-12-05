@@ -1,0 +1,59 @@
+services:
+
+  mysql:
+    container_name: mysql
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: fitverse
+    restart: always
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+    extends:
+      file: common-config.yaml
+      service: network-configuration
+
+  fit-verse-backend:
+    image: "rupesh1997/fit-verse-backend:1.0.0"
+    container_name: fit-verse-backend
+    depends_on:
+      mysql:
+        condition: service_healthy
+    ports:
+      - "9090:9090"
+    environment:
+      SPRING_APPLICATION_NAME: "fit-verse-backend"
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/fitverse?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.MySQL8Dialect
+    extends:
+      file: common-config.yaml
+      service: network-configuration
+
+  fit-verse-frontend:
+    image: "rupesh1997/fit-verse-frontend:1.0.0"
+    container_name: fit-verse-frontend
+    depends_on:
+      fit-verse-backend:
+        condition: service_started
+    ports:
+      - "3000:8080"
+    extends:
+      file: common-config.yaml
+      service: network-configuration
+
+networks:
+  fit-verse-network:
+    driver: bridge
+
+volumes:
+  mysql-data:

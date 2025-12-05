@@ -1,15 +1,14 @@
 import {Component} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
+import {WelcomeComponent} from './welcome/welcome.component';
 
 @Component({
   selector: 'fit-verse-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, WelcomeComponent],
   standalone: true,
   template: `
-    <h1 class="text-3xl font-bold underline">
-      Hello world!
-    </h1>
     <router-outlet/>
+    <fit-verse-welcome/>
   `
 })
 export class AppComponent {

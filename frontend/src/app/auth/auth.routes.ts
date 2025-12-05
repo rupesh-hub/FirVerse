@@ -17,6 +17,11 @@ export const AUTH_ROUTES: Routes = [
       import('./forgot-password/forgot-password.component').then(m => m.ForgotPasswordComponent),
   },
   {
+    path: 'verify-otp',
+    loadComponent: () =>
+      import('./otp-verifier/otp-verifier.component').then(m => m.OtpVerifierComponent),
+  },
+  {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full',

@@ -1,1 +1,78 @@
-<p>register works!</p>
+<div class="flex justify-center items-center min-h-screen p-4">
+
+  <div class="w-full max-w-lg bg-white rounded-xl shadow-md p-8 space-y-7 border border-gray-100">
+    <div class="text-center">
+      <i class="fa-solid fa-seedling fa-3x text-cyan-600 mb-3"></i>
+
+      <h1 class="text-3xl font-extrabold text-gray-800 tracking-tight">Join FitVerse</h1>
+      <p class="text-gray-500 mt-1">Create your account and start your journey</p>
+    </div>
+
+    <form action="#" method="POST" class="space-y-4">
+
+      <div class="space-y-2">
+        <label for="full_name" class="block text-sm font-medium text-gray-700">Full Name</label>
+        <div class="relative">
+          <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+            <i class="fa-solid fa-signature text-gray-400"></i>
+          </span>
+          <input id="full_name" type="text" name="full_name" class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-600 focus:border-cyan-600 transition duration-150 ease-in-out" placeholder="John Doe">
+        </div>
+      </div>
+
+      <div class="space-y-2">
+        <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+        <div class="relative">
+          <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+            <i class="fa-solid fa-envelope text-gray-400"></i>
+          </span>
+          <input id="email" type="email" name="email" class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-600 focus:border-cyan-600 transition duration-150 ease-in-out" placeholder="john.doe@example.com">
+        </div>
+      </div>
+
+      <div class="space-y-2">
+        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+        <div class="relative">
+          <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+            <i class="fa-solid fa-key text-gray-400"></i>
+          </span>
+          <input id="password-reg" type="password" name="password" class="w-full pl-10 pr-10 py-2 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-600 focus:border-cyan-600 transition duration-150 ease-in-out" placeholder="Minimum 8 characters">
+
+          <button type="button" id="togglePasswordReg" class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 hover:text-cyan-600 transition duration-150" title="Toggle Password Visibility">
+            <i class="fa-solid fa-eye-slash"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="space-y-2">
+        <label for="confirm-password" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+        <div class="relative">
+          <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+            <i class="fa-solid fa-lock text-gray-400"></i>
+          </span>
+          <input id="confirm-password" type="password" name="confirm_password" class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-600 focus:border-cyan-600 transition duration-150 ease-in-out" placeholder="Confirm your password">
+        </div>
+      </div>
+
+      <div class="flex items-start pt-2">
+        <div class="flex items-center h-5">
+          <input id="terms" name="terms" type="checkbox" required class="focus:ring-cyan-500 h-4 w-4 text-cyan-600 border-gray-300 rounded">
+        </div>
+        <div class="ml-3 text-sm">
+          <label for="terms" class="font-medium text-gray-700">I agree to the <a href="#" class="text-cyan-600 hover:text-cyan-500">Terms of Service</a></label>
+        </div>
+      </div>
+
+      <button type="submit" class="w-full bg-cyan-600 text-white py-2.5 rounded-lg text-lg font-bold shadow-md hover:bg-cyan-700 focus:outline-none focus:ring-4 focus:ring-cyan-500 focus:ring-opacity-50 transition duration-150 ease-in-out uppercase tracking-wider">
+        Create Account
+      </button>
+    </form>
+
+    <hr class="border-t border-gray-200">
+
+    <div class="mt-6 text-center text-sm text-gray-600">
+      <p>Already a member? <a routerLink="/auth/login" class="font-bold text-cyan-600 hover:text-cyan-500">Log In here</a></p>
+    </div>
+  </div>
+
+</div>
