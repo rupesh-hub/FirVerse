@@ -5,7 +5,7 @@ pipeline {
         DOCKER_HUB_CREDENTIALS_ID = 'docker-hub-credentials'
         DOCKER_REPO = 'rupesh1997'
         PROJECT_NAME = 'fit-verse-backend'
-        PROJECT_VERSION = ''
+        PROJECT_VERSION = '1.0.0'
     }
 
     stages {
@@ -20,27 +20,6 @@ pipeline {
         stage("Checkout repository") {
             steps {
                 git url: 'https://github.com/rupesh-hub/FirVerse.git', branch: 'main'
-            }
-        }
-
-        stage("Extract project version") {
-            steps {
-                dir('backend') {
-                    script {
-                        // Extract version using Maven exec plugin
-                        env.PROJECT_VERSION = sh(
-                            script: './mvnw -q -Dexec.executable=echo -Dexec.args=${project.version} --non-recursive exec:exec',
-                            returnStdout: true
-                        ).trim()
-
-                        // Set default if extraction fails
-                        if (!env.PROJECT_VERSION) {
-                            echo "⚠ Version not found in pom.xml, using default 1.0.0"
-                            env.PROJECT_VERSION = "1.0.0"
-                        }
-                    }
-                }
-                echo "✔ Backend project version: ${env.PROJECT_VERSION}"
             }
         }
 
