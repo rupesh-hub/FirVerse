@@ -28,9 +28,8 @@ pipeline {
                     script {
                         env.PROJECT_VERSION = sh(
                             script: """
-                                ./mvnw help:evaluate \
-                                -Dexpression=project.version \
-                                -q -DforceStdout
+                                ./mvnw help:evaluate -Dexpression=project.version -q -DforceStdout \
+                                | grep -E '^[0-9]+(\\.[0-9]+)*$'
                             """,
                             returnStdout: true
                         ).trim()
@@ -55,7 +54,6 @@ pipeline {
                         dir('backend') {
                             sh "./mvnw test"
                         }
-                        junit '**/target/surefire-reports/TEST-*.xml'
                     }
                 }
             }
