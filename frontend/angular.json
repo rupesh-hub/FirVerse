@@ -54,8 +54,8 @@
               "outputHashing": "all",
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environments.prod.ts",
-                  "with": "src/environments/environments.ts"
+                  "replace": "src/environments/environments.ts",
+                  "with": "src/environments/environments.production.ts"
                 }
               ]
             },
@@ -67,8 +67,8 @@
             "docker": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environments.docker.ts",
-                  "with": "src/environments/environments.ts"
+                  "replace": "src/environments/environments.ts",
+                  "with": "src/environments/environments.docker.ts"
                 }
               ],
               "optimization": true,
