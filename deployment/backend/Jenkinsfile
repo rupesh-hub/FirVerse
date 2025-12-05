@@ -27,15 +27,12 @@ pipeline {
                 dir('backend') {
                     script {
                         env.PROJECT_VERSION = sh(
-                            script: """
-                                ./mvnw help:evaluate -Dexpression=project.version -q -DforceStdout \
-                                | grep -E '^[0-9]+(\\.[0-9]+)*$'
-                            """,
+                            script: './mvnw -q -Dexec.executable=echo -Dexec.args=${project.version} --non-recursive exec:exec',
                             returnStdout: true
                         ).trim()
                     }
                 }
-                echo "✔ Extracted project version: ${env.PROJECT_VERSION}"
+                echo "✔ Extracted backend project version: ${env.PROJECT_VERSION}"
             }
         }
 

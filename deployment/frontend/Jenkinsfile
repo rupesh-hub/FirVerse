@@ -1,9 +1,8 @@
 pipeline {
     agent {
-        // Use official Node.js Docker image for frontend builds
         docker {
             image 'node:20-alpine'
-            args '-u root' // run as root to install dependencies if needed
+            args '-u root'
         }
     }
 
@@ -26,9 +25,8 @@ pipeline {
             steps {
                 dir('frontend') {
                     script {
-                        // Extract version from package.json using node (no jq needed)
                         env.PROJECT_VERSION = sh(
-                            script: "node -p \"require('./package.json').version\"",
+                            script: "jq -r .version package.json",
                             returnStdout: true
                         ).trim()
                     }
